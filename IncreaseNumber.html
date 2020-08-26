@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IncreaseNumber</title>
+</head>
+<body>
+<input type="number" placeholder="Nhập số vào đi!!" oninput="increaseNumber(this.value)"> <p id="display"></p>
+</body>
+</html>
+<script>
+    function increaseNumber(num) {
+        document.getElementById("display").innerHTML = ++num;
+        return  num;
+    };
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let str1 = prompt("Nhập chuỗi đi anh zai!!");
+    let result = false;
+    alert(isPalindrome(str1));
+    
+    function isPalindrome(string) {
+        if (string.length == 0 || string.length == 1){
+            result = true;
+        }
+        else if (string[0] == string[string.length - 1]){
+            let str = string.slice(1, string.length - 1);
+            isPalindrome(str);
+        }
+
+        return result;
+    }
+</script>

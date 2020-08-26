@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ManageProduct</title>
+    <style>
+        body{
+            padding: 20px;
+            font-family: "Times New Roman";
+        }
+        #addField{
+            background-color: #dedede;
+            width: 20%;
+            padding: 20px;
+        }
+        input{
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: darkgrey;
+            font-family: "Times New Roman";
+        }
+        button{
+            background-color: #17b305;
+            border: #21E00D;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        table{
+            width: 40%;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        tr:nth-child(even){
+            background-color: #dedede;
+        }
+        td{
+            padding: 10px;
+        }
+        .classNameProduct{
+            width: 70%;
+        }
+        .classTotal{
+            color: red;
+            text-align: right;
+        }
+        .classLabel{
+            text-align: left;
+        }
+        th{
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body onload="displayProduct()">
+<h1>Add New Product</h1>
+<form id="addField" method="post">
+    <input type="text" id="newproduct" placeholder="Nhập" onfocus="this.value=''">
+    <button type="submit" onclick="AddNewProduct(); return false;">Thêm</button>
+</form>
+<h1>Display All Product</h1>
+<form id="displaying"></form>
+</body>
+</html>
+<script>
+    let product = ["Sony", "Samsung"];
+    function AddNewProduct() {
+        let newProduct = document.getElementById('newproduct');
+        if (newProduct.value == " " || newProduct.value == ""){
+            alert("Nhập tên sản phẩm đi!!");
+        }
+        else{
+            product.push(newProduct.value);
+        }
+        newProduct.focus();
+        displayProduct();
+    }
+
+    function displayProduct() {
+        let table = "<table>";
+        table += "<tr>" +
+            "<th class='classLabel'>Product Name</th>" +
+            "<th class='classTotal'>" + product.length + " product</th>" +
+            "</tr>";
+
+        for (let i = 0; i < product.length; i++) {
+            table += "<tr>" +
+                "<td class='classNameProduct' id='productName"+ i +"'>" + product[i] + "</td>" +
+                "<td>" +
+                "<button type='button' onclick='EditProduct(" + i + ")'>Edit</button>" +
+                "<button type='button' onclick='DeleteProduct(" + i + ")'>Delete</button>" +
+                "</td>" +
+                "</tr>"
+        }
+        table += "</table>";
+        document.getElementById("displaying").innerHTML = table;
+    }
+    
+    function DeleteProduct(index) {
+        product.splice(index,1);
+        displayProduct();
+    }
+
+    function EditProduct(index) {
+        let editingProduct = "productName" + index;
+        let beforeName = product[index];
+        let changeField = "<input onchange='confirmEdit(" + index +", this)' value='" + beforeName + "'>";
+        document.getElementById(editingProduct).innerHTML = changeField;
+    }
+    function confirmEdit(index, element) {
+        let newName = element.value;
+        product[index] = newName;
+        displayProduct();
+    }
+</script>
+<!--<script>-->
+<!--    let product = ["Sony", "Samsung"];-->
+<!--    let table = document.createElement("table");-->
+<!--    let field = document.getElementById("displaying");-->
+
+<!--    let row = document.createElement("tr");-->
+<!--    let label = document.createElement("th");-->
+<!--    let text = document.createTextNode("Product Name");-->
+<!--    label.appendChild(text);-->
+<!--    label.setAttribute("class", "classLabel");-->
+<!--    let total = document.createElement("th");-->
+<!--    text = document.createTextNode(product.length + " products");-->
+<!--    total.appendChild(text);-->
+<!--    total.setAttribute("class", "classTotal");-->
+
+<!--    row.appendChild(label);-->
+<!--    row.appendChild(total);-->
+<!--    table.appendChild(row);-->
+
+<!--    function AddNewProduct() {-->
+<!--        let newProduct = document.getElementById('newproduct').value;-->
+<!--        if (newProduct == "" || newProduct == null){-->
+<!--            alert("Nhập tên sản phẩm đi!!");-->
+<!--        }-->
+<!--        else{-->
+<!--            product.push(newProduct);-->
+<!--        }-->
+<!--        displayProduct();-->
+<!--    }-->
+
+<!--    function displayProduct() {-->
+<!--        for (let i = 0; i < product.length; i++) {-->
+<!--            row = document.createElement("tr");-->
+
+<!--            //Tạo ô product-->
+<!--            let nameProduct = document.createElement("td");-->
+<!--            text = document.createTextNode(product[i]);-->
+<!--            nameProduct.appendChild(text);-->
+<!--            nameProduct.setAttribute("class", "classNameProduct");-->
+
+<!--            //Tạo ô có button edit và delete-->
+<!--            let cellButton = document.createElement("td");-->
+<!--            let buttonEdit = document.createElement("button");-->
+<!--            buttonEdit.setAttribute("type", "button");-->
+<!--            text = document.createTextNode("Edit");-->
+<!--            buttonEdit.appendChild(text);-->
+<!--            buttonEdit.setAttribute("onclick", "EditProduct()");-->
+
+<!--            //Tạo button Delete-->
+<!--            let buttonDelete = document.createElement("button");-->
+<!--            buttonDelete.setAttribute("type", "button");-->
+<!--            text = document.createTextNode("Delete");-->
+<!--            buttonDelete.appendChild(text);-->
+<!--            buttonDelete.setAttribute("onclick", "DeleteProduct()");-->
+
+<!--            //Add tất cả và hoàn thành bảng.-->
+<!--            cellButton.appendChild(buttonEdit);-->
+<!--            cellButton.appendChild(buttonDelete);-->
+<!--            row.appendChild(nameProduct);-->
+<!--            row.appendChild(cellButton);-->
+<!--            table.appendChild(row);-->
+<!--        }-->
+<!--        field.appendChild(table);-->
+<!--    }-->
+<!--</script>-->

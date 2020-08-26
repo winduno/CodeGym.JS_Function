@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Constellar</title>
+</head>
+<body onload="SearchStar(prompt('Nhập ngôi sao muốn tìm vị trí xem nào!!'))">
+
+</body>
+</html>
+<script>
+    let Stars = ["polaris", "aldebaran", "deneb", "vega", "altair", "dubhe", "regulus"];
+    let Constellar = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+    function SearchStar(string) {
+        let index = Stars.indexOf(string.toLowerCase());
+        if (index != -1){
+            document.write("Chòm sao của " + string + " là " + Constellar[index]);
+        }
+        else{
+            alert("Bịa ra à?? F5 đê!!");
+        }
+    }
+</script>

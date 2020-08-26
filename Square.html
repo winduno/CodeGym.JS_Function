@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Square</title>
+</head>
+<body>
+<input type="number" placeholder="Nhập số ngay đi!!" oninput="Square(this.value)">    <p id="display"></p>
+</body>
+</html>
+<script>
+    function Square(number) {
+        document.getElementById("display").innerHTML = number * number;
+        return number*number;
+    }
+</script>
