@@ -67,7 +67,22 @@
 </body>
 </html>
 <script>
-    let product = ["Sony", "Samsung"];
+    let product = ["Sony","Apple"];
+
+    // localStorage.setItem("productLength", product.length);
+    // localStorage.setItem("localList", product);
+    // localStorage.clear();
+    // let length = localStorage.getItem("productLength");
+    let localProduct;
+    product = getProduct();
+
+    function setProduct() {
+        localStorage.setItem("localList", product);
+    }
+    function getProduct() {
+        localProduct = localStorage.getItem("localList") ? localStorage.getItem("localList"): product;
+        return localProduct.split(",");
+    }
     function AddNewProduct() {
         let newProduct = document.getElementById('newproduct');
         if (newProduct.value == " " || newProduct.value == ""){
@@ -75,6 +90,7 @@
         }
         else{
             product.push(newProduct.value);
+            setProduct(product);
         }
         newProduct.focus();
         displayProduct();
@@ -102,6 +118,7 @@
     
     function DeleteProduct(index) {
         product.splice(index,1);
+        setProduct()
         displayProduct();
     }
 
@@ -114,6 +131,7 @@
     function confirmEdit(index, element) {
         let newName = element.value;
         product[index] = newName;
+        setProduct();
         displayProduct();
     }
 </script>
